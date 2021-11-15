@@ -27,25 +27,41 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             LayoutsInJetpackComposeTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
-                }
+                LayoutCodelab()
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+fun LayoutCodelab() {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(text = "LayoutsCodelab")
+                }
+            )
+        }
+    ) { innerPadding ->
+        BodyContent(Modifier.padding(innerPadding).padding(8.dp))
+    }
 }
-
-@Preview(showBackground = true)
+/*
 @Composable
-fun DefaultPreview() {
+fun BodyContent(modifier: Modifier = Modifier) {
+    Column(modifier = modifier.padding(8.dp)) {
+        Text(text = "Hi there!")
+        Text(text = "Thanks for going through the Layouts codelab")
+    }
+}
+ */
+
+@Preview
+@Composable
+fun LayoutCodelabPreview() {
     LayoutsInJetpackComposeTheme {
-        Greeting("Android")
+        LayoutCodelab()
     }
 }
 
@@ -84,45 +100,5 @@ fun PhotographerCard(modifier: Modifier = Modifier) {
 fun PhotographerCardPreview() {
     LayoutsInJetpackComposeTheme {
         PhotographerCard()
-    }
-}
-
-@Composable
-fun LayoutCodelab() {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(text = "LayoutsCodelab")
-                }
-            )
-        }
-    ) { innerPadding ->
-        BodyContent(Modifier.padding(innerPadding).padding(8.dp))
-    }
-}
-
-@Composable
-fun BodyContent(modifier: Modifier = Modifier) {
-    Column(modifier = modifier.padding(8.dp)) {
-        Text(text = "Hi there!")
-        Text(text = "Thanks for going through the Layouts codelab")
-    }
-}
-
-@Preview
-@Composable
-fun LayoutCodelabPreview() {
-    LayoutsInJetpackComposeTheme {
-        LayoutCodelab()
-    }
-}
-
-@Composable
-fun SimpleList() {
-    Column {
-        repeat(100) {
-            Text("Item #$it")
-        }
     }
 }
